@@ -6,3 +6,9 @@ Text->for viewing text
 Image->for showing Images
 ImageBackground->for back ground image
 Scroll View->scroll view is for scrolling the page
+Pressable->this is for pressing a text image whatever it is
+
+
+
+events:
+Pressable-> onpress, onlongpress, onpressout
