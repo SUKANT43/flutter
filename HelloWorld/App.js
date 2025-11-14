@@ -1,4 +1,4 @@
-import {View,Text,Image, ImageBackground, ScrollView,Button,Pressable,Modal, StatusBar, ActivityIndicator} from 'react-native';
+import {View,Text,Image, ImageBackground, ScrollView,Button,Pressable,Modal, StatusBar, ActivityIndicator, StyleSheet} from 'react-native';
 import { useState } from 'react';
 import Greet from './components/Greet';
 export default function App(){
@@ -54,3 +54,4 @@ return(
 </View>
 )
 }
+
