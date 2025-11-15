@@ -14,3 +14,8 @@ ActivityIndicator->loading and the props are size,color and animating this is fo
 events:
 Pressable-> onpress, onlongpress, onpressout
 alignself,alignitems,justifycontent,flexwrap,alignContent,rowgap,colgap,gap
+relative:normal flow of the layout 
+absolute:is dose not normal flow layout it took from the parent starting
+<Safearea>-> this is for leaving the worst sace like notcha and dynamic island
+useWindowDimension is for respoaive design
+Platform.OS
