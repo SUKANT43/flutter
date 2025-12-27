@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -22,6 +24,74 @@ const WeatherScreen({super.key});
 
           )
         ],
+      ),
+      body: Padding(
+
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            //main card
+           SizedBox(
+              width: double.infinity,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Card(
+                  elevation: 10,
+                  color: Colors.white.withOpacity(0.07),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Text(
+                            "300.67°F",
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(Icons.cloud, size: 64),
+                          Text(
+                            "Rain",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height:20),
+
+            //weather forecast card
+
+            Text(
+              "Weather Forecast",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+
+            const SizedBox(height: 20,)
+
+            
+
+        
+        
+            //additional information
+        
+            // const Placeholder(
+            //   fallbackHeight: 150,
+            // )
+        
+          ],
+        ),
       ),
     );
   }
