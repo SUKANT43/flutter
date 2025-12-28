@@ -1,0 +1,1 @@
+String apiKey="https://api.openweathermap.org/data/2.5/forecast?q=London,uk&appid=6e9b88f9592590512f8d7d3e2cd287fd";

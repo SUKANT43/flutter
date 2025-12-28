@@ -1,15 +1,41 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import './secrets.dart';
 import './weather_forecast.dart';
 import './additional_inforation.dart';
-class WeatherScreen extends StatelessWidget {
+import 'package:http/http.dart' as http;
+
+
+
+class WeatherScreen extends StatefulWidget {
 const WeatherScreen({super.key});
+
+  @override
+  State<WeatherScreen> createState() => _WeatherScreenState();
+}
+
+class _WeatherScreenState extends State<WeatherScreen> {
+final String cityName="London";
+@override
+void initState() {
+  super.initState();
+  getCurrentWeather();
+}
+
+Future getCurrentWeather() async{
+   final res=await http.get(Uri.parse("https://api.openweathermap.org/data/2.5/forecast?q=London,uk&appid=6e9b88f9592590512f8d7d3e2cd287fd"));
+   final data=jsonDecode(res.body);
+   if(data['cod']!='200'){
+    throw 'unexpected error';
+   }
+}
+
+
 
 @override
   Widget build(BuildContext context) {
-
-    
 
     return Scaffold(
       appBar: AppBar(
@@ -88,11 +114,11 @@ const WeatherScreen({super.key});
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                 HourlyForecast(),
-                 HourlyForecast(),
-                 HourlyForecast(),
-                 HourlyForecast(),
-                 HourlyForecast(),
+                 HourlyForecast(time:"00:00",icondata: Icons.cloud,temperature: "301.22"),
+                 HourlyForecast(time:"00:00",icondata: Icons.sunny,temperature: "301.22"),
+                 HourlyForecast(time:"00:00",icondata: Icons.cloud,temperature: "301.22"),
+                 HourlyForecast(time:"00:00",icondata: Icons.cloud,temperature: "301.22"),
+                 HourlyForecast(time:"00:00",icondata: Icons.cloud,temperature: "301.22"),
                  
                 ],
               ),
@@ -120,9 +146,21 @@ const WeatherScreen({super.key});
         Row(
           mainAxisAlignment:MainAxisAlignment.spaceAround ,
           children: [
-            AdditionalInformation(),
-            AdditionalInformation(),
-            AdditionalInformation(),
+            AdditionalInformation(
+              icondata:Icons.water_drop,
+              label: "Humidity",
+              value: "91",
+            ),
+            AdditionalInformation(
+              icondata: Icons.air,
+              label: "Wind Speed",
+              value: "7.5",
+            ),
+            AdditionalInformation(
+              icondata: Icons.beach_access,
+              label: "Pressure",
+              value: "1000",
+            ),
           ],
         )
             // const Placeholder(
@@ -134,6 +172,5 @@ const WeatherScreen({super.key});
       ),
     );
   }
-
 }
 
