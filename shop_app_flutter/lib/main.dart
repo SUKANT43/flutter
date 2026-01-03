@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './home_page.dart';
+import './product_details_page.dart';
+import './global_variable.dart';
 void main(){
   runApp(MyApp());
 }
@@ -28,15 +30,21 @@ void main(){
             titleMedium: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
-              
             ),
+            
             bodySmall: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16
             )
+          ),
+          appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(
+              fontSize: 16,
+              color: Colors.black
+            ),
           )
         ),
-        home:HomePage(),
+        home:ProductDetailsPage(product: products[0],),
     );
   }
  }

@@ -4,7 +4,8 @@ class ProductCard extends StatelessWidget {
 final String title;
 final double price;
 final String image;
-  const ProductCard({super.key,required this.title,required this.price,required this.image});
+final Color backgroundColor;
+  const ProductCard({super.key,required this.title,required this.price,required this.image,required this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ final String image;
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-       color: Color.fromRGBO(216, 240, 244, 1),
+       color: backgroundColor,
         borderRadius: BorderRadius.circular(20)
       ),
       child:Column(
@@ -23,7 +24,7 @@ final String image;
           const SizedBox(height: 5,),
           Text('\$$price',style:Theme.of(context).textTheme.bodySmall),
           const SizedBox(height: 5,),
-          Center(child: Image.asset(image,height: 175,))
+          Center(child: Image.asset(image,height: 175,)),
         ],
       )
     );

@@ -9,7 +9,8 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  
+       String selectedFilter='All';
+
   final List<String>list=const[
     'All',
     'Addidas',
@@ -27,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-     String selectedFilter='All';
     final border=const OutlineInputBorder(
                         borderSide: BorderSide(
                           color:Color.fromRGBO(225, 225, 225, 1),
@@ -102,7 +102,9 @@ class _HomePageState extends State<HomePage> {
                   return ProductCard(
                     title:product['title'] as String,
                     price: product['price'] as double,
-                    image:product['imageUrl'] as String);
+                    image:product['imageUrl'] as String,
+                    backgroundColor:(index.isEven)?Color.fromARGB(215, 152, 190, 201):Colors.red.shade200
+                    );
               },
             ),
           )
