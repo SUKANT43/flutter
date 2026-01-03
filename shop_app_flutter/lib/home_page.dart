@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
-
-class HomePage extends StatelessWidget{
+import './global_variable.dart';
+import './product_card.dart';
+class HomePage extends StatefulWidget{
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  
+  final List<String>list=const[
+    'All',
+    'Addidas',
+    'Nike',
+    'Bata'
+  ];
+
+   
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+     String selectedFilter='All';
     final border=const OutlineInputBorder(
                         borderSide: BorderSide(
                           color:Color.fromRGBO(225, 225, 225, 1),
@@ -36,12 +59,53 @@ class HomePage extends StatelessWidget{
                       enabledBorder: border,
                       focusedBorder: border
                     ),
-                    
                   ),
-                  
                 ),
               ],
             ),
+            
+            SizedBox(
+              height: 120,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  final filter=list[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 12),
+                    child: GestureDetector(
+                      onTap:(){
+                        setState(() {
+                            selectedFilter=filter;
+                        });
+                      },
+                      child: Chip(
+                      side: BorderSide(color: Colors.white),
+                      label:Text(filter),
+                      backgroundColor: selectedFilter==filter?Theme.of(context).colorScheme.primary:const Color.fromARGB(66, 228, 223, 223),
+                      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                      shape:RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)
+                      )
+                      ),
+                    ),
+                  
+                  );
+                },
+                ),
+            ),
+          Expanded(
+            child: ListView.builder(
+              itemCount:products.length ,
+              itemBuilder: (context,index){
+                final product=products[index];
+                  return ProductCard(
+                    title:product['title'] as String,
+                    price: product['price'] as double,
+                    image:product['imageUrl'] as String);
+              },
+            ),
+          )
           ],
         ),
       )
