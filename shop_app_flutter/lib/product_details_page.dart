@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_flutter/cart_provider.dart';
+
+import 'package:provider/provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String,Object>product;
@@ -10,6 +13,26 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int selectedSize=0;
+  void onTap(){
+    if(selectedSize!=0){
+      Provider.of<CartProvider>(context,listen: false).addProduct(
+        {
+      'id': widget.product['id'],
+      'title': widget.product['title'],
+      'price': widget.product['price'],
+      'imageUrl': widget.product['imageUrl'],
+      'company': widget.product['company'],
+      'sizes':selectedSize
+      },
+      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product added successfully!')));
+
+    }
+    //this messanger find the nearest scaffold and showing the shownackbar
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please select size.')));
+    }
+              }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +87,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed:onTap,
                     icon: const Icon(Icons.shopping_cart, color: Colors.black),
                     label: const Text(
                       'Add to Cart',
