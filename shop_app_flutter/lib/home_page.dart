@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_flutter/product_details_page.dart';
 import './global_variable.dart';
 import './product_card.dart';
 class HomePage extends StatefulWidget{
@@ -99,12 +100,20 @@ class _HomePageState extends State<HomePage> {
               itemCount:products.length ,
               itemBuilder: (context,index){
                 final product=products[index];
-                  return ProductCard(
-                    title:product['title'] as String,
-                    price: product['price'] as double,
-                    image:product['imageUrl'] as String,
-                    backgroundColor:(index.isEven)?Color.fromARGB(215, 152, 190, 201):Colors.red.shade200
-                    );
+                  return GestureDetector(
+                    //push replacememt is used in login age if a user logined no need to go back
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        return ProductDetailsPage(product:product);
+                      }));
+                    },
+                    child: ProductCard(
+                      title:product['title'] as String,
+                      price: product['price'] as double,
+                      image:product['imageUrl'] as String,
+                      backgroundColor:(index.isEven)?Color.fromARGB(215, 152, 190, 201):Colors.red.shade200
+                      ),
+                  );
               },
             ),
           )

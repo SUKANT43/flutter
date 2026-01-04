@@ -44,7 +44,7 @@ void main(){
             ),
           )
         ),
-        home:ProductDetailsPage(product: products[0],),
+        home:HomePage(),
     );
   }
  }
